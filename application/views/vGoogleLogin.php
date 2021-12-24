@@ -21,12 +21,12 @@
             <?php
             if (!isset($login_button)) {
 
-                $userdata = $this->session->userdata('user_data');
                 echo '<div class="panel-heading">Welcome User</div><div class="panel-body">';
-                echo '<img src="' . $userdata['profile_picture'] . '" class="img-responsive img-circle img-thumbnail" />';
-                echo '<h3><b>Nama : </b>' . $userdata["first_name"] . ' ' . $userdata['last_name'] . '</h3>';
-                echo '<h3><b>Email :</b> ' . $userdata['email_address'] . '</h3>';
-                echo '<h3><b>Email :</b> ' . $userdata['eduPersonOrgUnitDN'] . '</h3>';
+                echo '<img src="' . $this->session->userdata('profile_picture') . '" class="img-responsive img-circle img-thumbnail" />';
+                echo '<h3><b>Nama : </b>' . $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name') . '</h3>';
+                echo '<h3><b>Email :</b> ' . $this->session->userdata('email_address') . '</h3>';
+                echo '<h3><b>NIM :</b> ' . $this->session->userdata('id_person') . '</h3>';
+                echo '<h3><b>Login :</b> ' . $this->session->userdata('login') . '</h3>';
                 echo '<h3><a href="' . base_url('googleLogin/logout') . '">Logout</h3></div>';
             } else {
                 echo '<div align="center">' . $login_button . '</div>';

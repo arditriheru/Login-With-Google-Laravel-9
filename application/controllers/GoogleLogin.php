@@ -15,9 +15,9 @@ class GoogleLogin extends CI_Controller
 
         $google_client = new Google_Client();
 
-        $google_client->setClientId('876905194422-sf3k6298hsjv55601id5475maji21fcs.apps.googleusercontent.com'); //Define your ClientID
+        $google_client->setClientId('678635072023-r5ocqk5a3jp0106pbqkac1lb28k14ej4.apps.googleusercontent.com'); //Define your ClientID
 
-        $google_client->setClientSecret('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'); //Define your Client Secret Key
+        $google_client->setClientSecret('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'); //Define your Client Secret Key
 
         $google_client->setRedirectUri('http://localhost/Login-With-Google-CI3/googleLogin/login'); //Define your Redirect Uri
 
@@ -41,31 +41,34 @@ class GoogleLogin extends CI_Controller
 
                 if ($this->mGoogleLogin->Is_already_register($data['id'])) {
                     //update data
-                    $user_data = array(
-                        'first_name'        => $data['given_name'],
-                        'last_name'         => $data['family_name'],
-                        'email_address'     => $data['email'],
-                        'profile_picture'   => $data['picture'],
-                        'eduPersonOrgUnitDN' => $data['eduPersonOrgUnitDN'],
-                        'updated_at'        => $current_datetime
-                    );
-
-                    // $this->mGoogleLogin->Update_user_data($user_data, $data['id']);
-                } else {
-                    //insert data
-                    $user_data = array(
+                    $userdata = array(
                         'login_oauth_uid'   => $data['id'],
                         'first_name'        => $data['given_name'],
                         'last_name'         => $data['family_name'],
                         'email_address'     => $data['email'],
                         'profile_picture'   => $data['picture'],
-                        'eduPersonOrgUnitDN' => $data['eduPersonOrgUnitDN'],
+                        'id_person'         => substr($data['email'], 0, -10),
+                        'login'             => 1,
                         'created_at'        => $current_datetime
                     );
 
-                    // $this->mGoogleLogin->Insert_user_data($user_data);
+                    // $this->mGoogleLogin->Update_user_data($userdata, $data['id']);
+                } else {
+                    //insert data
+                    $userdata = array(
+                        'login_oauth_uid'   => $data['id'],
+                        'first_name'        => $data['given_name'],
+                        'last_name'         => $data['family_name'],
+                        'email_address'     => $data['email'],
+                        'profile_picture'   => $data['picture'],
+                        'id_person'         => substr($data['email'], 0, -10),
+                        'login'             => 1,
+                        'created_at'        => $current_datetime
+                    );
+
+                    // $this->mGoogleLogin->Insert_user_data($userdata);
                 }
-                $this->session->set_userdata('user_data', $user_data);
+                $this->session->set_userdata($userdata);
             }
         }
         $login_button = '';
@@ -74,7 +77,7 @@ class GoogleLogin extends CI_Controller
             $data['login_button'] = $login_button;
             $this->load->view('vGoogleLogin', $data);
         } else {
-            $this->load->view('vGoogleLogin', $data);
+            $this->load->view('vGoogleLogin');
         }
     }
 
