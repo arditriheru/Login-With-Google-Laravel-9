@@ -70,7 +70,7 @@ class GoogleLogin extends CI_Controller
         }
         $login_button = '';
         if (!$this->session->userdata('access_token')) {
-            $login_button = '<a href="https://accounts.google.com/o/oauth2/auth/identifier?response_type=code&access_type=online&client_id=876905194422-sf3k6298hsjv55601id5475maji21fcs.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%2FLogin-With-Google-CI3%2FgoogleLogin%2Flogin&state&scope=email%20profile&approval_prompt=auto&flowName=GeneralOAuthFlow"><img src="' . base_url() . 'assets/login/images/google.png" /></a>';
+            $login_button = '<a href="' . $google_client->createAuthUrl() . '"><img src="' . base_url() . 'assets/login/images/google.png" /></a>';
             $data['login_button'] = $login_button;
             $this->load->view('vGoogleLogin', $data);
         } else {
