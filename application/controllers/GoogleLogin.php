@@ -15,9 +15,9 @@ class GoogleLogin extends CI_Controller
 
         $google_client = new Google_Client();
 
-        $google_client->setClientId('678635072023-r5ocqk5a3jp0106pbqkac1lb28k14ej4.apps.googleusercontent.com'); //Define your ClientID
+        $google_client->setClientId('...'); //Define your ClientID
 
-        $google_client->setClientSecret('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'); //Define your Client Secret Key
+        $google_client->setClientSecret('...'); //Define your Client Secret Key
 
         $google_client->setRedirectUri('http://localhost/Login-With-Google-CI3/googleLogin/login'); //Define your Redirect Uri
 
